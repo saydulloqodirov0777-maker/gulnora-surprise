@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gulnora uchun 🌸</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+overflow:hidden;
+background:black;
+color:white;
+}
+
+/* ===== PAGE 1 ===== */
+
+#page1{
+position:relative;
+width:100%;
+height:100vh;
+
+background:
+linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),
+url('background.jpg');
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:25px;
+overflow:hidden;
+}
+
+.content{
+z-index:2;
+max-width:800px;
+animation:fadeIn 2s;
+}
+
+.title{
+font-size:42px;
+font-weight:600;
+margin-bottom:20px;
+color:#fff;
+text-shadow:0 0 15px rgba(255,255,255,0.4);
+}
+
+.message{
+font-size:19px;
+line-height:1.9;
+font-weight:300;
+
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(8px);
+
+padding:25px;
+border-radius:22px;
+
+box-shadow:0 0 25px rgba(255,255,255,0.12);
+}
+
+.btn{
+margin-top:35px;
+padding:16px 34px;
+border:none;
+border-radius:40px;
+
+font-size:18px;
+font-weight:600;
+
+background:linear-gradient(to right,#ffd1dc,#f7b7c3);
+color:#5c2c35;
+
+cursor:pointer;
+
+box-shadow:0 0 20px rgba(255,192,203,0.45);
+
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.06);
+}
+
+/* ===== PAGE 2 ===== */
+
+#page2{
+display:none;
+
+position:relative;
+width:100%;
+height:100vh;
+
+background:
+linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)),
+url('gift-bg.jpg');
+
+background-size:cover;
+background-position:center;
+
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+text-align:center;
+padding:20px;
+
+overflow:hidden;
+}
+
+.gift-title{
+font-size:38px;
+margin-bottom:25px;
+text-shadow:0 0 15px rgba(255,255,255,0.35);
+}
+
+.check-card{
+width:320px;
+
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(10px);
+
+border-radius:28px;
+
+padding:25px;
+
+box-shadow:0 0 35px rgba(255,255,255,0.18);
+
+animation:fadeIn 2s;
+}
+
+.check-card img{
+width:100%;
+border-radius:18px;
+}
+
+.amount{
+margin-top:18px;
+font-size:28px;
+font-weight:600;
+color:#ffe4ec;
+}
+
+/* ===== FLOWERS ===== */
+
+.flower{
+position:absolute;
+top:-60px;
+font-size:34px;
+animation:fall linear forwards;
+opacity:0.9;
+z-index:1;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:600px){
+
+.title{
+font-size:34px;
+}
+
+.message{
+font-size:17px;
+line-height:1.8;
+padding:20px;
+}
+
+.gift-title{
+font-size:31px;
+}
+
+.btn{
+font-size:17px;
+padding:15px 28px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== PAGE 1 ===== -->
+
+<div id="page1">
+
+<div class="content">
+
+<div class="title">
+Gulnora uchun 🌸
+</div>
+
+<div class="message">
+
+Assalomu alaykum, hurmatli Gulnora 🌷 <br><br>
+
+Sizni yuksak hurmat va samimiyat ila 21-bahoringiz — tavallud ayyomingiz bilan chin qalbimdan muborakbod etaman 🥳 <br><br>
+
+Allohdan shu kungacha qilgan va bundan keyin qiladigan barcha ezgu niyat hamda orzularingizga yetishingizni so‘rab qolaman 🤲 <br><br>
+
+O‘qishlaringizda, oilaviy va shaxsiy hayotingizda doimo zafar, xotirjamlik va baxt Sizga hamroh bo‘lsin. <br><br>
+
+Ochig‘i, Sizdagi samimiyat va go‘zal muomala insonga alohida iliqlik bag‘ishlaydi 🌸 <br><br>
+
+Va yana… Siz uchun kichik bir sovg‘a ham tayyorladim 🎁
+
+</div>
+
+<button class="btn" onclick="openGift()">
+Siz uchun kichik sovg‘a 🎁
+</button>
+
+</div>
+
+</div>
+
+<!-- ===== PAGE 2 ===== -->
+
+<div id="page2">
+
+<div class="gift-title">
+Kichik sovg‘a Siz uchun ✨
+</div>
+
+<div class="check-card">
+
+<img src="chek.jpg">
+
+<div class="amount">
+500 000 so‘m
+</div>
+
+</div>
+
+</div>
+
+<!-- ===== MUSIC ===== -->
+
+<audio id="music1" src="music1.mp3"></audio>
+<audio id="music2" src="music2.mp3"></audio>
+
+<script>
+
+/* ===== OPEN GIFT ===== */
+
+function openGift(){
+
+document.getElementById("page1").style.display="none";
+document.getElementById("page2").style.display="flex";
+
+document.getElementById("music1").pause();
+document.getElementById("music2").play();
+
+startGiftFlowers();
+
+}
+
+/* ===== AUTO MUSIC ===== */
+
+window.onload = function(){
+
+document.getElementById("music1").play();
+
+startFlowers();
+
+}
+
+/* ===== FLOWERS PAGE 1 ===== */
+
+function startFlowers(){
+
+setInterval(()=>{
+
+createFlower();
+
+},400);
+
+}
+
+function createFlower(){
+
+const flowers=["🌹","🌷","🌺"];
+
+const flower=document.createElement("div");
+
+flower.className="flower";
+
+flower.innerHTML=flowers[Math.floor(Math.random()*flowers.length)];
+
+flower.style.left=Math.random()*100+"vw";
+
+flower.style.animationDuration=(4+Math.random()*3)+"s";
+
+flower.style.fontSize=(28+Math.random()*14)+"px";
+
+document.getElementById("page1").appendChild(flower);
+
+setTimeout(()=>{
+flower.remove();
+},7000);
+
+}
+
+/* ===== GIFT PAGE ITEMS ===== */
+
+function startGiftFlowers(){
+
+setInterval(()=>{
+
+createGiftItem();
+
+},500);
+
+}
+
+function createGiftItem(){
+
+const items=["🎁","💝","🎀"];
+
+const item=document.createElement("div");
+
+item.className="flower";
+
+item.innerHTML=items[Math.floor(Math.random()*items.length)];
+
+item.style.left=Math.random()*100+"vw";
+
+item.style.animationDuration=(4+Math.random()*3)+"s";
+
+item.style.fontSize=(30+Math.random()*18)+"px";
+
+document.getElementById("page2").appendChild(item);
+
+setTimeout(()=>{
+item.remove();
+},7000);
+
+}
+
+</script>
+
+</body>
+  </html>
