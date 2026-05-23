@@ -29,26 +29,81 @@
         }
 
         .page {
-            min-height: 100vh;
-            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: none;
             align-items: center;
             justify-content: center;
             transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
+            z-index: 2;
         }
 
         #page1 {
             background: linear-gradient(rgba(26,15,20,0.28), rgba(26,15,20,0.38)), 
                         url('IMG_20260523_095228_677.jpg') center/cover no-repeat fixed;
-            z-index: 2;
         }
 
         #page2 {
             background: linear-gradient(135deg, #1a0f14 0%, #2c1a22 100%);
-            opacity: 0;
-            pointer-events: none;
             z-index: 3;
-            overflow: hidden;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Tap to Enter Overlay */
+        #enterOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.78);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 1.2s ease;
+        }
+
+        .enter-content {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255,182,193,0.4);
+            background: rgba(255,255,255,0.08);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+        }
+
+        .enter-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            color: var(--soft-pink);
+            text-shadow: 0 0 40px rgba(255,182,193,0.9);
+            margin-bottom: 2rem;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        .enter-btn {
+            padding: 18px 60px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(45deg, #e8b4b8, #ff8da8);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 15px 40px rgba(232, 180, 184, 0.5);
+            transition: all 0.4s ease;
+        }
+
+        .enter-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 20px 50px rgba(232, 180, 184, 0.7);
         }
 
         .content-wrapper {
@@ -123,10 +178,6 @@
             left: 250%;
         }
 
-        .button:active {
-            transform: scale(0.96);
-        }
-
         /* Gift Page */
         .gift-container {
             width: 100%;
@@ -139,14 +190,16 @@
         }
 
         #giftImage {
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
+            max-width: 100%;
+            max-height: 100%;
             box-shadow: 0 0 70px rgba(232, 180, 184, 0.5);
             animation: giftFloat 8s ease-in-out infinite;
         }
 
-        /* Falling Flowers & Particles - Behind content */
+        /* Flowers & Particles - Behind Content */
         #flowers {
             position: absolute;
             top: 0;
@@ -167,7 +220,6 @@
             animation: fall linear infinite;
             user-select: none;
             pointer-events: none;
-            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.3));
         }
 
         .particles {
@@ -224,6 +276,16 @@
 </head>
 <body>
 
+    <!-- Tap to Enter Overlay -->
+    <div id="enterOverlay">
+        <div class="enter-content">
+            <div class="enter-text">Gulnora uchun 🌸</div>
+            <button onclick="enterWebsite()" class="enter-btn">
+                Tap to Enter ✨
+            </button>
+        </div>
+    </div>
+
     <!-- PAGE 1 -->
     <div id="page1" class="page">
         <div id="flowers"></div>
@@ -266,7 +328,6 @@
     </audio>
 
     <script>
-        // Music Control
         let music = document.getElementById('bgMusic');
         let isPlaying = false;
 
@@ -282,15 +343,24 @@
             }
         }
 
-        // Autoplay attempt
-        function tryAutoplay() {
-            music.volume = 0.6;
-            music.play().then(() => {
-                isPlaying = true;
-                document.querySelectorAll('.music-btn').forEach(btn => btn.innerHTML = '❚❚');
-            }).catch(() => {
-                // User interaction will trigger play
-            });
+        function enterWebsite() {
+            const overlay = document.getElementById('enterOverlay');
+            overlay.style.opacity = '0';
+            
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                
+                const page1 = document.getElementById('page1');
+                page1.style.display = 'flex';
+                page1.style.opacity = '1';
+                
+                // Start music after enter
+                music.volume = 0.7;
+                music.play().then(() => {
+                    isPlaying = true;
+                    document.querySelectorAll('.music-btn').forEach(btn => btn.innerHTML = '❚❚');
+                }).catch(() => {});
+            }, 800);
         }
 
         // Falling Flowers
@@ -372,22 +442,23 @@
             
             page1.style.opacity = '0';
             setTimeout(() => {
-                page1.style.pointerEvents = 'none';
+                page1.style.display = 'none';
+                page2.style.display = 'flex';
                 page2.style.opacity = '1';
-                page2.style.pointerEvents = 'all';
             }, 800);
         }
 
-        // Keyboard
+        // Keyboard Support
         document.addEventListener('keydown', (e) => {
             if (e.key === "Escape") {
                 const page1 = document.getElementById('page1');
                 const page2 = document.getElementById('page2');
-                if (page2.style.opacity === '1') {
+                if (page2.style.display === 'flex') {
                     page2.style.opacity = '0';
                     setTimeout(() => {
+                        page2.style.display = 'none';
+                        page1.style.display = 'flex';
                         page1.style.opacity = '1';
-                        page1.style.pointerEvents = 'all';
                     }, 700);
                 }
             }
@@ -396,19 +467,6 @@
         window.onload = () => {
             startFallingFlowers();
             createParticles();
-            tryAutoplay();
-            
-            // Image fallback
-            const giftImg = document.getElementById('giftImage');
-            giftImg.onerror = function() {
-                this.style.background = 'linear-gradient(135deg, #c97a8f, #e8b4b8)';
-                this.style.display = 'flex';
-                this.style.alignItems = 'center';
-                this.style.justifyContent = 'center';
-                this.style.color = '#fff';
-                this.style.fontSize = '1.8rem';
-                this.textContent = '🎁';
-            };
         };
     </script>
 </body>
