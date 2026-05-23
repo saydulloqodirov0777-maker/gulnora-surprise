@@ -12,7 +12,6 @@
             --soft-pink: #ffb6c1;
             --rose-gold: #e8b4b8;
             --deep-rose: #c97a8f;
-            --luxury-black: #1a0f14;
         }
 
         * {
@@ -23,26 +22,22 @@
 
         body {
             font-family: 'Playfair Display', serif;
-            overflow: hidden;
             background: #000;
             color: white;
+            line-height: 1.7;
         }
 
         .page {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1;
+            position: relative;
         }
 
         #page1 {
-            background: linear-gradient(rgba(26,15,20,0.35), rgba(26,15,20,0.45)), 
+            background: linear-gradient(rgba(26,15,20,0.28), rgba(26,15,20,0.38)), 
                         url('IMG_20260523_095228_677.jpg') center/cover no-repeat fixed;
             z-index: 2;
         }
@@ -54,53 +49,57 @@
             z-index: 3;
         }
 
+        .content-wrapper {
+            width: 100%;
+            max-width: 720px;
+            padding: 2rem 1.2rem;
+            margin: 0 auto;
+        }
+
         .content {
-            position: relative;
-            z-index: 10;
             text-align: center;
-            max-width: 92%;
-            padding: 2.2rem 1.8rem;
-            border-radius: 28px;
-            backdrop-filter: blur(16px);
-            background: rgba(255,255,255,0.09);
-            border: 1px solid rgba(255,182,193,0.35);
-            box-shadow: 0 30px 70px -15px rgba(0,0,0,0.5);
+            padding: 1.8rem 1.6rem;
+            border-radius: 24px;
+            backdrop-filter: blur(8px);
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,182,193,0.25);
+            box-shadow: 0 20px 50px -15px rgba(0,0,0,0.5);
         }
 
         .title {
             font-family: 'Dancing Script', cursive;
-            font-size: clamp(3.8rem, 9vw, 7rem);
+            font-size: clamp(3.2rem, 8.5vw, 6.2rem);
             color: var(--soft-pink);
-            text-shadow: 0 0 40px rgba(255,182,193,0.9),
-                         0 0 90px rgba(255,182,193,0.5);
-            margin-bottom: 1.8rem;
+            text-shadow: 0 0 35px rgba(255,182,193,0.85),
+                         0 0 70px rgba(255,182,193,0.45);
+            margin-bottom: 1.6rem;
             line-height: 1.05;
             animation: titleGlow 4s ease-in-out infinite alternate;
         }
 
         .message {
-            font-size: clamp(1.15rem, 4.2vw, 1.4rem);
-            line-height: 1.85;
+            font-size: clamp(1.1rem, 4vw, 1.32rem);
             color: #f8e8ee;
-            margin-bottom: 2.8rem;
-            text-shadow: 0 3px 15px rgba(0,0,0,0.7);
+            text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+            margin-bottom: 2.2rem;
         }
 
         .button {
             display: inline-block;
-            padding: 20px 55px;
-            font-size: 1.45rem;
+            padding: 18px 50px;
+            font-size: 1.4rem;
             font-weight: 700;
             color: white;
             background: linear-gradient(45deg, #e8b4b8, #ff8da8);
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 18px 40px -8px rgba(232, 180, 184, 0.6);
+            box-shadow: 0 15px 35px -5px rgba(232, 180, 184, 0.6);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
             position: relative;
             overflow: hidden;
+            margin-top: 0.5rem;
         }
 
         .button::before {
@@ -118,73 +117,69 @@
             left: 250%;
         }
 
-        .button:hover {
-            transform: translateY(-10px) scale(1.06);
-            box-shadow: 0 28px 55px -10px rgba(232, 180, 184, 0.75);
+        .button:active {
+            transform: scale(0.96);
         }
 
         /* Gift Page */
         .gift-container {
-            position: relative;
             width: 100%;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            position: relative;
         }
 
         #giftImage {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border: none;
-            box-shadow: 0 0 80px rgba(232, 180, 184, 0.6);
+            box-shadow: 0 0 70px rgba(232, 180, 184, 0.5);
             animation: giftFloat 7s ease-in-out infinite;
         }
 
         .section-title {
             font-family: 'Dancing Script', cursive;
-            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-size: clamp(2.8rem, 7.5vw, 5rem);
             color: #ffd4e3;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 40px rgba(255, 212, 227, 0.85);
+            text-shadow: 0 0 40px rgba(255, 212, 227, 0.8);
             position: absolute;
-            top: 8%;
+            top: 10%;
             left: 50%;
             transform: translateX(-50%);
             z-index: 20;
-            width: 100%;
             text-align: center;
+            width: 90%;
         }
 
-        /* Enhanced Falling Flowers */
+        /* Falling Flowers */
         .flower {
             position: absolute;
-            top: -120px;
-            font-size: 2.4rem;
-            opacity: 0.9;
+            top: -100px;
+            font-size: 2.3rem;
+            opacity: 0.85;
             z-index: 5;
             animation: fall linear infinite;
             user-select: none;
             pointer-events: none;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
         }
 
         @keyframes fall {
             to {
-                transform: translateY(110vh) rotate(1080deg);
+                transform: translateY(115vh) rotate(1080deg);
             }
         }
 
         @keyframes titleGlow {
             from { text-shadow: 0 0 25px rgba(255,182,193,0.7); }
-            to { text-shadow: 0 0 55px rgba(255,182,193,0.95), 0 0 100px rgba(255,182,193,0.6); }
+            to { text-shadow: 0 0 55px rgba(255,182,193,0.95), 0 0 95px rgba(255,182,193,0.5); }
         }
 
         @keyframes giftFloat {
             0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-22px) scale(1.02); }
+            50% { transform: translateY(-20px) scale(1.015); }
         }
 
         .particles {
@@ -199,27 +194,27 @@
 
         .music-btn {
             position: fixed;
-            bottom: 28px;
-            right: 28px;
-            width: 62px;
-            height: 62px;
-            background: rgba(255,255,255,0.12);
-            border: 2.5px solid var(--rose-gold);
+            bottom: 25px;
+            right: 25px;
+            width: 58px;
+            height: 58px;
+            background: rgba(255,255,255,0.13);
+            border: 2px solid var(--rose-gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             cursor: pointer;
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(10px);
             z-index: 100;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
         }
 
         .music-btn:hover {
-            background: rgba(232, 180, 184, 0.35);
-            transform: scale(1.12);
+            transform: scale(1.1);
+            background: rgba(232, 180, 184, 0.3);
         }
     </style>
 </head>
@@ -230,21 +225,23 @@
         <div id="flowers"></div>
         <canvas id="canvas" class="particles"></canvas>
 
-        <div class="content">
-            <h1 class="title">Gulnora uchun 🌸</h1>
-            
-            <div class="message">
-                <p>Assalomu alaykum, hurmatli Gulnora!</p><br>
-                <p>Sizni yuksak qalb va samimiyat ila <strong>21-bahoringiz</strong> bilan chin qalbdan tabriklayman 🥳🥳</p><br>
-                <p>Allohdan shu kungacha qilgan va bundan keyin qiladigan barcha ezgu niyat hamda orzularingizga yetishingizni so‘rab qolaman 🤲</p><br>
-                <p>O‘qishlaringizda, oilaviy va shaxsiy hayotingizda doimo zafar, xotirjamlik va baxt Sizga hamroh bo‘lsin.</p><br>
-                <p>Sizdagi samimiyat va go‘zal muomala insonga alohida iliqlik bag‘ishlaydi 🌸</p><br>
-                <p>Va yana… Siz uchun maxsus sovg‘a tayyorladim 🎁</p>
+        <div class="content-wrapper">
+            <div class="content">
+                <h1 class="title">Gulnora uchun 🌸</h1>
+                
+                <div class="message">
+                    <p>Assalomu alaykum, hurmatli Gulnora!</p><br>
+                    <p>Sizni yuksak qalb va samimiyat ila <strong>21-bahoringiz</strong> bilan chin qalbdan tabriklayman 🥳</p><br>
+                    <p>Allohdan shu kungacha qilgan va bundan keyin qiladigan barcha ezgu niyat hamda orzularingizga yetishingizni so‘rab qolaman 🤲</p><br>
+                    <p>O‘qishlaringizda, oilaviy va shaxsiy hayotingizda doimo zafar, xotirjamlik va baxt Sizga hamroh bo‘lsin.</p><br>
+                    <p>Sizdagi samimiyat va go‘zal muomala insonga alohida iliqlik bag‘ishlaydi 🌸</p><br>
+                    <p>Va yana… Siz uchun maxsus sovg‘a tayyorladim 🎁</p>
+                </div>
+                
+                <button onclick="openGift()" class="button">
+                    Sovg‘angizni oching 🎁
+                </button>
             </div>
-            
-            <button onclick="openGift()" class="button">
-                Sovg‘angizni oching 🎁
-            </button>
         </div>
 
         <div class="music-btn" id="musicBtn1" onclick="toggleMusic1()">♪</div>
@@ -271,7 +268,7 @@
     </audio>
 
     <script>
-        // Enhanced Falling Flowers
+        // Falling Flowers
         function createFlower() {
             const flowers = ['🌹', '🌷', '🌸', '💐', '🌺', '🪻'];
             const flower = document.createElement('div');
@@ -280,24 +277,22 @@
             
             const left = Math.random() * 100;
             flower.style.left = `${left}vw`;
-            flower.style.animationDuration = `${Math.random() * 7 + 11}s`;
-            flower.style.opacity = Math.random() * 0.5 + 0.65;
-            flower.style.fontSize = `${Math.random() * 2.2 + 2.3}rem`;
-            flower.style.transform = `rotate(${Math.random() * 60 - 30}deg)`;
+            flower.style.animationDuration = `${Math.random() * 8 + 10}s`;
+            flower.style.opacity = Math.random() * 0.55 + 0.6;
+            flower.style.fontSize = `${Math.random() * 2 + 2.1}rem`;
             
             document.getElementById('flowers').appendChild(flower);
-            
-            setTimeout(() => flower.remove(), 22000);
+            setTimeout(() => flower.remove(), 23000);
         }
 
         function startFallingFlowers() {
-            for (let i = 0; i < 22; i++) {
-                setTimeout(createFlower, i * 140);
+            for (let i = 0; i < 20; i++) {
+                setTimeout(createFlower, i * 160);
             }
-            setInterval(createFlower, 380);
+            setInterval(createFlower, 420);
         }
 
-        // Glowing Particles
+        // Particles
         function createParticles() {
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
@@ -312,22 +307,18 @@
             let particles = [];
             
             class Particle {
-                constructor() {
-                    this.reset();
-                }
+                constructor() { this.reset(); }
                 reset() {
                     this.x = Math.random() * canvas.width;
                     this.y = Math.random() * canvas.height;
-                    this.size = Math.random() * 3.5 + 1.8;
-                    this.speedX = Math.random() * 0.8 - 0.4;
-                    this.speedY = Math.random() * 0.8 - 0.4;
-                    this.opacity = Math.random() * 0.5 + 0.45;
+                    this.size = Math.random() * 3 + 1.5;
+                    this.speedX = Math.random() * 0.7 - 0.35;
+                    this.speedY = Math.random() * 0.7 - 0.35;
+                    this.opacity = Math.random() * 0.5 + 0.4;
                 }
                 update() {
                     this.x += this.speedX;
                     this.y += this.speedY;
-                    this.opacity -= 0.002;
-                    if (this.opacity <= 0) this.reset();
                 }
                 draw() {
                     ctx.fillStyle = `rgba(255, 182, 193, ${this.opacity})`;
@@ -337,9 +328,7 @@
                 }
             }
             
-            for (let i = 0; i < 80; i++) {
-                particles.push(new Particle());
-            }
+            for (let i = 0; i < 75; i++) particles.push(new Particle());
             
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -352,29 +341,26 @@
             animate();
         }
 
-        // Open Gift
         function openGift() {
             const page1 = document.getElementById('page1');
             const page2 = document.getElementById('page2');
             
             page1.style.opacity = '0';
-            
             setTimeout(() => {
                 page1.style.pointerEvents = 'none';
                 page2.style.opacity = '1';
                 page2.style.pointerEvents = 'all';
-            }, 900);
+            }, 800);
         }
 
-        // Music Controls
+        // Music
         let music1 = document.getElementById('romanticMusic');
         let music2 = document.getElementById('luxuryMusic');
-        let isPlaying1 = false;
-        let isPlaying2 = false;
+        let isPlaying1 = false, isPlaying2 = false;
 
         function toggleMusic1() {
             if (!isPlaying1) {
-                music1.play();
+                music1.play().catch(()=>{});
                 isPlaying1 = true;
                 document.getElementById('musicBtn1').innerHTML = '❚❚';
             } else {
@@ -386,7 +372,7 @@
 
         function toggleMusic2() {
             if (!isPlaying2) {
-                music2.play();
+                music2.play().catch(()=>{});
                 isPlaying2 = true;
                 document.getElementById('musicBtn2').innerHTML = '❚❚';
             } else {
@@ -396,7 +382,7 @@
             }
         }
 
-        // Keyboard support
+        // Keyboard
         document.addEventListener('keydown', (e) => {
             if (e.key === "Escape") {
                 const page1 = document.getElementById('page1');
@@ -406,12 +392,11 @@
                     setTimeout(() => {
                         page1.style.opacity = '1';
                         page1.style.pointerEvents = 'all';
-                    }, 800);
+                    }, 700);
                 }
             }
         });
 
-        // Initialize
         window.onload = () => {
             startFallingFlowers();
             createParticles();
@@ -422,9 +407,9 @@
                 this.style.display = 'flex';
                 this.style.alignItems = 'center';
                 this.style.justifyContent = 'center';
-                this.style.color = 'white';
-                this.style.fontSize = '1.6rem';
-                this.textContent = '🎁 Gulnora uchun maxsus sovg‘a 🎁';
+                this.style.color = '#fff';
+                this.style.fontSize = '1.5rem';
+                this.textContent = '🎁 Gulnora uchun sovg‘a 🎁';
             };
         };
     </script>
