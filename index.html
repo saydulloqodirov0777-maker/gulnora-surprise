@@ -1,359 +1,433 @@
+```html
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gulnora uchun 🌸 | 21 yosh</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Dancing+Script:wght@400;700&amp;display=swap');
+        
+        :root {
+            --soft-pink: #ffb6c1;
+            --rose-gold: #e8b4b8;
+            --deep-rose: #c97a8f;
+            --luxury-black: #1a0f14;
+        }
 
-<title>Gulnora uchun 🌸</title>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Playfair Display', serif;
+            overflow: hidden;
+            background: #000;
+            color: white;
+        }
 
-<style>
+        .page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+        #page1 {
+            background: linear-gradient(rgba(26,15,20,0.35), rgba(26,15,20,0.45)), 
+                        url('IMG_20260523_095228_677.jpg') center/cover no-repeat fixed;
+            z-index: 2;
+        }
 
-body{
-font-family:'Poppins',sans-serif;
-overflow:hidden;
-background:black;
-color:white;
-}
+        #page2 {
+            background: linear-gradient(135deg, #1a0f14 0%, #2c1a22 100%);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 3;
+        }
 
-/* FIRST PAGE */
+        .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 92%;
+            padding: 2.2rem 1.8rem;
+            border-radius: 28px;
+            backdrop-filter: blur(16px);
+            background: rgba(255,255,255,0.09);
+            border: 1px solid rgba(255,182,193,0.35);
+            box-shadow: 0 30px 70px -15px rgba(0,0,0,0.5);
+        }
 
-#page1{
-position:relative;
-width:100%;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-overflow:hidden;
-}
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3.8rem, 9vw, 7rem);
+            color: var(--soft-pink);
+            text-shadow: 0 0 40px rgba(255,182,193,0.9),
+                         0 0 90px rgba(255,182,193,0.5);
+            margin-bottom: 1.8rem;
+            line-height: 1.05;
+            animation: titleGlow 4s ease-in-out infinite alternate;
+        }
 
-.bg{
-position:absolute;
-width:100%;
-height:100%;
-background:url('IMG_20260523_095228_677.jpg') center/cover no-repeat;
-filter:brightness(1);
-z-index:-2;
-}
+        .message {
+            font-size: clamp(1.15rem, 4.2vw, 1.4rem);
+            line-height: 1.85;
+            color: #f8e8ee;
+            margin-bottom: 2.8rem;
+            text-shadow: 0 3px 15px rgba(0,0,0,0.7);
+        }
 
-.overlay{
-position:absolute;
-width:100%;
-height:100%;
-background:rgba(255,192,203,0.15);
-z-index:-1;
-}
+        .button {
+            display: inline-block;
+            padding: 20px 55px;
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(45deg, #e8b4b8, #ff8da8);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 18px 40px -8px rgba(232, 180, 184, 0.6);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
 
-.card{
-width:90%;
-max-width:420px;
-background:rgba(0,0,0,0.45);
-backdrop-filter:blur(4px);
-padding:35px 25px;
-border-radius:30px;
-text-align:center;
-box-shadow:0 0 30px rgba(255,255,255,0.15);
-animation:fadeUp 2s ease;
-}
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+            transition: 0.8s;
+        }
 
-.card h1{
-font-size:38px;
-margin-bottom:20px;
-color:#fff;
-}
+        .button:hover::before {
+            left: 250%;
+        }
 
-.card p{
-font-size:22px;
-line-height:1.9;
-margin-bottom:20px;
-font-weight:300;
-}
+        .button:hover {
+            transform: translateY(-10px) scale(1.06);
+            box-shadow: 0 28px 55px -10px rgba(232, 180, 184, 0.75);
+        }
 
-.btn{
-margin-top:20px;
-padding:16px 32px;
-border:none;
-border-radius:40px;
-font-size:20px;
-font-weight:600;
-background:linear-gradient(45deg,#ff7eb3,#ff4f81);
-color:white;
-cursor:pointer;
-box-shadow:0 0 20px rgba(255,105,180,0.6);
-transition:0.3s;
-}
+        /* Gift Page */
+        .gift-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
 
-.btn:hover{
-transform:scale(1.08);
-}
+        #giftImage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+            box-shadow: 0 0 80px rgba(232, 180, 184, 0.6);
+            animation: giftFloat 7s ease-in-out infinite;
+        }
 
-/* FLOWERS */
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            color: #ffd4e3;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 40px rgba(255, 212, 227, 0.85);
+            position: absolute;
+            top: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            width: 100%;
+            text-align: center;
+        }
 
-.flower{
-position:absolute;
-top:-100px;
-font-size:34px;
-animation:fall linear infinite;
-opacity:0.9;
-}
+        /* Enhanced Falling Flowers */
+        .flower {
+            position: absolute;
+            top: -120px;
+            font-size: 2.4rem;
+            opacity: 0.9;
+            z-index: 5;
+            animation: fall linear infinite;
+            user-select: none;
+            pointer-events: none;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
 
-@keyframes fall{
-0%{
-transform:translateY(-100px) rotate(0deg);
-}
-100%{
-transform:translateY(120vh) rotate(360deg);
-}
-}
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(1080deg);
+            }
+        }
 
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(60px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 25px rgba(255,182,193,0.7); }
+            to { text-shadow: 0 0 55px rgba(255,182,193,0.95), 0 0 100px rgba(255,182,193,0.6); }
+        }
 
-/* SECOND PAGE */
+        @keyframes giftFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-22px) scale(1.02); }
+        }
 
-#page2{
-display:none;
-position:relative;
-width:100%;
-height:100vh;
-background:
-linear-gradient(135deg,#111,#1c1c1c,#2b2b2b);
-overflow:hidden;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-padding:20px;
-}
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 4;
+        }
 
-.gift-title{
-font-size:42px;
-margin-bottom:25px;
-color:#ffd700;
-text-shadow:0 0 15px gold;
-animation:fadeUp 1.5s ease;
-}
+        .music-btn {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 62px;
+            height: 62px;
+            background: rgba(255,255,255,0.12);
+            border: 2.5px solid var(--rose-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
 
-.bank-card{
-width:95%;
-max-width:420px;
-background:linear-gradient(135deg,#2d2d2d,#111);
-padding:30px;
-border-radius:30px;
-box-shadow:0 0 30px rgba(255,215,0,0.25);
-position:relative;
-overflow:hidden;
-animation:fadeUp 1.5s ease;
-}
-
-.bank-card::before{
-content:'';
-position:absolute;
-top:-100px;
-left:-100px;
-width:250px;
-height:250px;
-background:rgba(255,215,0,0.12);
-border-radius:50%;
-}
-
-.amount{
-font-size:42px;
-font-weight:700;
-margin-top:35px;
-color:#fff;
-}
-
-.success{
-margin-top:10px;
-font-size:22px;
-color:#00ff99;
-}
-
-.receiver{
-margin-top:35px;
-font-size:24px;
-font-weight:600;
-color:#ffd700;
-}
-
-.bank{
-margin-top:10px;
-font-size:18px;
-opacity:0.8;
-}
-
-.gift-box{
-position:absolute;
-font-size:34px;
-animation:fall linear infinite;
-}
-
-</style>
+        .music-btn:hover {
+            background: rgba(232, 180, 184, 0.35);
+            transform: scale(1.12);
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- PAGE 1 -->
+    <!-- PAGE 1 -->
+    <div id="page1" class="page">
+        <div id="flowers"></div>
+        <canvas id="canvas" class="particles"></canvas>
 
-<div id="page1">
+        <div class="content">
+            <h1 class="title">Gulnora uchun 🌸</h1>
+            
+            <div class="message">
+                <p>Assalomu alaykum, hurmatli Gulnora!</p><br>
+                <p>Sizni yuksak qalb va samimiyat ila <strong>21-bahoringiz</strong> bilan chin qalbdan tabriklayman 🥳🥳</p><br>
+                <p>Allohdan shu kungacha qilgan va bundan keyin qiladigan barcha ezgu niyat hamda orzularingizga yetishingizni so‘rab qolaman 🤲</p><br>
+                <p>O‘qishlaringizda, oilaviy va shaxsiy hayotingizda doimo zafar, xotirjamlik va baxt Sizga hamroh bo‘lsin.</p><br>
+                <p>Sizdagi samimiyat va go‘zal muomala insonga alohida iliqlik bag‘ishlaydi 🌸</p><br>
+                <p>Va yana… Siz uchun maxsus sovg‘a tayyorladim 🎁</p>
+            </div>
+            
+            <button onclick="openGift()" class="button">
+                Sovg‘angizni oching 🎁
+            </button>
+        </div>
 
-<div class="bg"></div>
-<div class="overlay"></div>
+        <div class="music-btn" id="musicBtn1" onclick="toggleMusic1()">♪</div>
+    </div>
 
-<div class="card">
+    <!-- PAGE 2 -->
+    <div id="page2" class="page">
+        <h1 class="section-title">Siz uchun maxsus sovg‘a 💖</h1>
+        
+        <div class="gift-container">
+            <img src="gift.png" alt="Luxury Gift for Gulnora" id="giftImage">
+        </div>
 
-<h1>Gulnora uchun 🌸</h1>
+        <div class="music-btn" id="musicBtn2" onclick="toggleMusic2()">♪</div>
+    </div>
 
-<p>
-Assalomu alaykum, hurmatli Gulnora 🌷
-</p>
+    <!-- Audio -->
+    <audio id="romanticMusic" loop>
+        <source src="https://assets.mixkit.co/sfx/preview/296/296-preview.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="luxuryMusic" loop>
+        <source src="https://assets.mixkit.co/sfx/preview/257/257-preview.mp3" type="audio/mpeg">
+    </audio>
 
-<p>
-Sizni yuksak qalb va samimiyat ila
-21-bahoringiz — tavallud ayyomingiz bilan
-chin qalbimdan muborakbod etaman 🥳
-</p>
+    <script>
+        // Enhanced Falling Flowers
+        function createFlower() {
+            const flowers = ['🌹', '🌷', '🌸', '💐', '🌺', '🪻'];
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+            
+            const left = Math.random() * 100;
+            flower.style.left = `${left}vw`;
+            flower.style.animationDuration = `${Math.random() * 7 + 11}s`;
+            flower.style.opacity = Math.random() * 0.5 + 0.65;
+            flower.style.fontSize = `${Math.random() * 2.2 + 2.3}rem`;
+            flower.style.transform = `rotate(${Math.random() * 60 - 30}deg)`;
+            
+            document.getElementById('flowers').appendChild(flower);
+            
+            setTimeout(() => flower.remove(), 22000);
+        }
 
-<p>
-Allohdan shu kungacha qilingan va
-bundan keyin qiladigan barcha ezgu
-niyat hamda orzularingizga yetishingizni
-so‘rab qolaman 🤲
-</p>
+        function startFallingFlowers() {
+            for (let i = 0; i < 22; i++) {
+                setTimeout(createFlower, i * 140);
+            }
+            setInterval(createFlower, 380);
+        }
 
-<p>
-O‘qishlaringizda, oilaviy va shaxsiy
-hayotingizda doimo zafar, xotirjamlik
-va baxt Sizga hamroh bo‘lsin 🌸
-</p>
+        // Glowing Particles
+        function createParticles() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+            
+            let particles = [];
+            
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3.5 + 1.8;
+                    this.speedX = Math.random() * 0.8 - 0.4;
+                    this.speedY = Math.random() * 0.8 - 0.4;
+                    this.opacity = Math.random() * 0.5 + 0.45;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.opacity -= 0.002;
+                    if (this.opacity <= 0) this.reset();
+                }
+                draw() {
+                    ctx.fillStyle = `rgba(255, 182, 193, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            for (let i = 0; i < 80; i++) {
+                particles.push(new Particle());
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let p of particles) {
+                    p.update();
+                    p.draw();
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
 
-<p>
-Va yana...
-Siz uchun kichik bir sovg‘a ham tayyorladim 🎁
-</p>
+        // Open Gift
+        function openGift() {
+            const page1 = document.getElementById('page1');
+            const page2 = document.getElementById('page2');
+            
+            page1.style.opacity = '0';
+            
+            setTimeout(() => {
+                page1.style.pointerEvents = 'none';
+                page2.style.opacity = '1';
+                page2.style.pointerEvents = 'all';
+            }, 900);
+        }
 
-<button class="btn" onclick="openGift()">
-🎁 Sovg‘ani ochish
-</button>
+        // Music Controls
+        let music1 = document.getElementById('romanticMusic');
+        let music2 = document.getElementById('luxuryMusic');
+        let isPlaying1 = false;
+        let isPlaying2 = false;
 
-</div>
+        function toggleMusic1() {
+            if (!isPlaying1) {
+                music1.play();
+                isPlaying1 = true;
+                document.getElementById('musicBtn1').innerHTML = '❚❚';
+            } else {
+                music1.pause();
+                isPlaying1 = false;
+                document.getElementById('musicBtn1').innerHTML = '♪';
+            }
+        }
 
-</div>
+        function toggleMusic2() {
+            if (!isPlaying2) {
+                music2.play();
+                isPlaying2 = true;
+                document.getElementById('musicBtn2').innerHTML = '❚❚';
+            } else {
+                music2.pause();
+                isPlaying2 = false;
+                document.getElementById('musicBtn2').innerHTML = '♪';
+            }
+        }
 
-<!-- PAGE 2 -->
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") {
+                const page1 = document.getElementById('page1');
+                const page2 = document.getElementById('page2');
+                if (page2.style.opacity === '1') {
+                    page2.style.opacity = '0';
+                    setTimeout(() => {
+                        page1.style.opacity = '1';
+                        page1.style.pointerEvents = 'all';
+                    }, 800);
+                }
+            }
+        });
 
-<div id="page2">
-
-<h1 class="gift-title">Luxury Gift ✨</h1>
-
-<div class="bank-card">
-
-<div class="amount">
-500 000 so‘m
-</div>
-
-<div class="success">
-✔ Mablag‘ muvaffaqiyatli o‘tkazildi
-</div>
-
-<div class="receiver">
-Gulnora 🌸
-</div>
-
-<div class="bank">
-Uzcard / Humo
-</div>
-
-</div>
-
-</div>
-
-<script>
-
-/* FLOWERS PAGE 1 */
-
-const flowers = ['🌹','🌷','🌸','💮'];
-
-for(let i=0;i<30;i++){
-
-let flower=document.createElement('div');
-flower.classList.add('flower');
-
-flower.innerHTML=
-flowers[Math.floor(Math.random()*flowers.length)];
-
-flower.style.left=Math.random()*100+'vw';
-
-flower.style.animationDuration=
-(5+Math.random()*8)+'s';
-
-flower.style.fontSize=
-(24+Math.random()*25)+'px';
-
-document.getElementById('page1').appendChild(flower);
-
-}
-
-/* GIFT BOX PAGE 2 */
-
-const gifts=['🎁','💝','🛍️'];
-
-function createGift(){
-
-let gift=document.createElement('div');
-
-gift.classList.add('gift-box');
-
-gift.innerHTML=
-gifts[Math.floor(Math.random()*gifts.length)];
-
-gift.style.left=Math.random()*100+'vw';
-
-gift.style.top='-50px';
-
-gift.style.animationDuration=
-(4+Math.random()*6)+'s';
-
-gift.style.fontSize=
-(25+Math.random()*25)+'px';
-
-document.getElementById('page2').appendChild(gift);
-
-setTimeout(()=>{
-gift.remove();
-},10000);
-
-}
-
-setInterval(createGift,500);
-
-/* OPEN PAGE 2 */
-
-function openGift(){
-
-document.getElementById('page1').style.display='none';
-
-document.getElementById('page2').style.display='flex';
-
-}
-
-</script>
-
+        // Initialize
+        window.onload = () => {
+            startFallingFlowers();
+            createParticles();
+            
+            const giftImg = document.getElementById('giftImage');
+            giftImg.onerror = function() {
+                this.style.background = 'linear-gradient(135deg, #c97a8f, #e8b4b8)';
+                this.style.display = 'flex';
+                this.style.alignItems = 'center';
+                this.style.justifyContent = 'center';
+                this.style.color = 'white';
+                this.style.fontSize = '1.6rem';
+                this.textContent = '🎁 Gulnora uchun maxsus sovg‘a 🎁';
+            };
+        };
+    </script>
 </body>
 </html>
+```
