@@ -28,7 +28,8 @@
         }
 
         .page {
-            min-height: 100vh;
+            height: 100vh;
+            overflow-y: auto;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -66,6 +67,8 @@
             background: rgba(255,255,255,0.07);
             border: 1px solid rgba(255,182,193,0.25);
             box-shadow: 0 20px 50px -15px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 10;
         }
 
         .title {
@@ -135,10 +138,9 @@
         }
 
         #giftImage {
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             object-fit: contain;
-            max-height: 100vh;
             box-shadow: 0 0 70px rgba(232, 180, 184, 0.5);
             animation: giftFloat 7s ease-in-out infinite;
         }
@@ -157,14 +159,14 @@
             width: 90%;
         }
 
-        /* Falling Flowers - Behind content */
+        /* Falling Flowers & Particles - Behind content */
         #flowers {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 3;
+            z-index: 1;
             pointer-events: none;
             overflow: hidden;
         }
@@ -172,13 +174,23 @@
         .flower {
             position: absolute;
             top: -100px;
-            font-size: 1.8rem;
-            opacity: 0.75;
-            z-index: 3;
+            font-size: 1.4rem;
+            opacity: 0.45;
+            z-index: 1;
             animation: fall linear infinite;
             user-select: none;
             pointer-events: none;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.3));
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
         @keyframes fall {
@@ -194,17 +206,7 @@
 
         @keyframes giftFloat {
             0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-20px) scale(1.015); }
-        }
-
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 4;
+            50% { transform: translateY(-18px) scale(1.01); }
         }
 
         .music-btn {
@@ -283,28 +285,28 @@
     </audio>
 
     <script>
-        // Falling Flowers - Reduced & Slower
+        // Falling Flowers
         function createFlower() {
-            const flowers = ['🌹', '🌷', '🌸', '💐', '🌺', '🪻'];
+            const flowers = ['🌹', '🌷', '🌸'];
             const flower = document.createElement('div');
             flower.className = 'flower';
             flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
             
             const left = Math.random() * 100;
             flower.style.left = `${left}vw`;
-            flower.style.animationDuration = `${Math.random() * 12 + 14}s`; /* Slower */
-            flower.style.opacity = Math.random() * 0.5 + 0.55;
-            flower.style.fontSize = `${Math.random() * 1.4 + 1.6}rem`; /* Smaller */
+            flower.style.animationDuration = `${Math.random() * 16 + 18}s`;
+            flower.style.opacity = Math.random() * 0.35 + 0.35;
+            flower.style.fontSize = `${Math.random() * 1.0 + 1.3}rem`;
             
             document.getElementById('flowers').appendChild(flower);
-            setTimeout(() => flower.remove(), 28000);
+            setTimeout(() => flower.remove(), 35000);
         }
 
         function startFallingFlowers() {
-            for (let i = 0; i < 10; i++) {  /* Reduced by 50% */
-                setTimeout(createFlower, i * 280);
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createFlower, i * 420);
             }
-            setInterval(createFlower, 650); /* Slower spawn */
+            setInterval(createFlower, 1100);
         }
 
         // Particles
@@ -326,10 +328,10 @@
                 reset() {
                     this.x = Math.random() * canvas.width;
                     this.y = Math.random() * canvas.height;
-                    this.size = Math.random() * 3 + 1.5;
-                    this.speedX = Math.random() * 0.7 - 0.35;
-                    this.speedY = Math.random() * 0.7 - 0.35;
-                    this.opacity = Math.random() * 0.5 + 0.4;
+                    this.size = Math.random() * 2.5 + 1.2;
+                    this.speedX = Math.random() * 0.6 - 0.3;
+                    this.speedY = Math.random() * 0.6 - 0.3;
+                    this.opacity = Math.random() * 0.4 + 0.3;
                 }
                 update() {
                     this.x += this.speedX;
@@ -343,7 +345,7 @@
                 }
             }
             
-            for (let i = 0; i < 75; i++) particles.push(new Particle());
+            for (let i = 0; i < 60; i++) particles.push(new Particle());
             
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -368,7 +370,7 @@
             }, 800);
         }
 
-        // Music
+        // Music Controls
         let music1 = document.getElementById('romanticMusic');
         let music2 = document.getElementById('luxuryMusic');
         let isPlaying1 = false, isPlaying2 = false;
@@ -397,7 +399,7 @@
             }
         }
 
-        // Keyboard
+        // Keyboard Support
         document.addEventListener('keydown', (e) => {
             if (e.key === "Escape") {
                 const page1 = document.getElementById('page1');
@@ -415,19 +417,8 @@
         window.onload = () => {
             startFallingFlowers();
             createParticles();
-            
-            const giftImg = document.getElementById('giftImage');
-            giftImg.onerror = function() {
-                this.style.background = 'linear-gradient(135deg, #c97a8f, #e8b4b8)';
-                this.style.display = 'flex';
-                this.style.alignItems = 'center';
-                this.style.justifyContent = 'center';
-                this.style.color = '#fff';
-                this.style.fontSize = '1.5rem';
-                this.textContent = '🎁 Gulnora uchun sovg‘a 🎁';
-            };
         };
     </script>
 </body>
 </html>
-```        
+```
